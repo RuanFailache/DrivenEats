@@ -128,13 +128,10 @@ footer button {
     color: white;
     background-color: #cbcbcb;
     box-shadow: 0 3px 10px 0 rgba(0, 0, 0, .3);
-    cursor: pointer;
+    cursor: not-allowed;
 }
 button span {
     display: block;
     width: 180px;
     margin: 0 auto;
-}
-footer button.active {
-    background-color: #32B72F;
 }

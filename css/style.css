@@ -20,7 +20,7 @@ header {
 
     color: white;
     background-color: #CF2B2B;
-    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, .3);
+    box-shadow: 0 4px 10px 0 #3f3f3f;
 
     padding-top: 10px;
     padding-bottom: 10px;
@@ -49,7 +49,7 @@ h3 {
 .dishes {
     margin-top: 120px;
 }
-.dessert {
+.desserts {
     margin-bottom: 120px;
 }
 
@@ -59,7 +59,7 @@ h3 {
 
     overflow-x: scroll;
 }
-.item {
+.dish, .drink, .dessert {
     display: block;
     padding: 10px;
     border-radius: 9px;
@@ -67,27 +67,41 @@ h3 {
     box-shadow: 0 0 10px 3px rgba(0, 0, 0, .1);
     cursor: pointer;
 }
-.item img {
+.dish img, .drink img, .dessert img {
     display: inherit;
     border-radius: inherit;
     width: 180px;
 }
-.item strong {
+.dish strong, .drink strong, .dessert strong {
     display: block;
     margin-top: 10px;
 
     font-size: 16px;
     font-weight: bold;
 }
-.item p {
+.dish p, .drink p, .dessert p {
     max-width: 180px;
-    margin-top: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
     font-size: 15px;
     font-weight: 300;
     color: #a6a6a6;
 }
-.item.active {
+.dish.active, .drink.active, .dessert.active {
     border: 5px solid #32B72F;
+    position: relative;
+}
+.dish.active::after, .drink.active::after, .dessert.active::after {
+    content: "✓";
+    background-color: #32B72F;
+    color: white;
+    border-radius: 50px;
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, .1);
+
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    padding: 3px 5px;
 }
 
 footer {
@@ -114,6 +128,7 @@ footer button {
     color: white;
     background-color: #cbcbcb;
     box-shadow: 0 3px 10px 0 rgba(0, 0, 0, .3);
+    cursor: pointer;
 }
 button span {
     display: block;

@@ -96,7 +96,7 @@ h3 {
     background-color: #32B72F;
     color: white;
     border-radius: 50px;
-    box-shadow: 0 0 10px 1px rgba(0, 0, 0, .1);
+    box-shadow: 3px 3px 10px 1px rgba(0, 0, 0, .1);
 
     position: absolute;
     bottom: 5px;
@@ -114,12 +114,7 @@ footer {
     padding-bottom: 20px;
     background-color: white;
 }
-footer button { 
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 24px;
-    letter-spacing: 1.8%;
-
+footer .btn { 
     width: 100%;
     padding: 10px 0px;
     border-radius: 50px;
@@ -127,11 +122,24 @@ footer button {
 
     color: white;
     background-color: #cbcbcb;
-    box-shadow: 0 3px 10px 0 rgba(0, 0, 0, .3);
+    box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, .3);
     cursor: not-allowed;
 }
-button span {
+
+.btn.active {
+    background-color: #32B72F;
+    padding: 22px 0;
+    cursor: pointer;
+}
+
+.btn span {
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 28px;
+    letter-spacing: 1.8%;
+    text-align: center;
+
     display: block;
-    width: 180px;
+    width: 200px;
     margin: 0 auto;
 }

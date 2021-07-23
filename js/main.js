@@ -98,9 +98,9 @@ const closeOrder = () => {
     drinkName.innerHTML = drinkActiveName;
     dessertName.innerHTML = dessertActiveName;
 
-    dishPrice.innerHTML = dishActivePrice;
-    drinkPrice.innerHTML = drinkActivePrice;
-    dessertPrice.innerHTML = dessertActivePrice;
+    dishPrice.innerHTML = dishActivePrice.toFixed(2);
+    drinkPrice.innerHTML = drinkActivePrice.toFixed(2);
+    dessertPrice.innerHTML = dessertActivePrice.toFixed(2);
 
     finalPrice.innerHTML = (dishActivePrice + drinkActivePrice + dessertActivePrice).toFixed(2);
 

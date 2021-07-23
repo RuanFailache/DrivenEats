@@ -1,10 +1,10 @@
 * {
     box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
 }
 
 body {
     background-color: #e5e5e5;
+    font-family: 'Roboto', sans-serif;
 }
 
 .website {
@@ -16,7 +16,7 @@ header {
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 100;
+    z-index: 1;
 
     color: white;
     background-color: #CF2B2B;
@@ -142,4 +142,63 @@ footer .btn {
     display: block;
     width: 200px;
     margin: 0 auto;
+}
+.check-window {
+    background-color: #333;
+    width: 100vh;
+}
+.hidden {
+    display: none;
+}
+.check-order {
+    position: fixed;
+    top: 20vh;
+    left: calc((100% - 336px) / 2);
+
+    padding: 20px;
+    border-radius: 9px;
+
+    color: white;
+    background-color: #50D074;
+    text-align: center;
+    font-size: 22px;
+}
+.check-order h4 {
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+.check-order button {
+    display: block;
+    margin: 0 auto;
+    cursor: pointer;
+    font-weight: bold;
+}
+.check-order ul {
+    margin-bottom: 30px;
+}
+.check-order li {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+.final-price, .total {
+    font-weight: bold;
+}
+.confirm {
+    border: none;    
+    padding: 10px 40px;
+    border-radius: 50px;
+    
+    font-size: 22px;
+    color: #50D074;
+    background-color: white;
+}
+.cancel {
+    font-size: 20px;
+    line-height: 35px;
+
+    border: none;
+
+    background-color: transparent;
+    color: white;
 }

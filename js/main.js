@@ -5,7 +5,7 @@ const desserts = document.querySelectorAll(".dessert");
 const btn = document.querySelector(".btn");
 const confirm = document.querySelector(".confirm");
 const cancel = document.querySelector(".cancel");
-const checkOrder = document.querySelector(".check-order");
+const checkOrder = document.querySelector(".check-window");
 
 dishes.forEach((dish) => {
   const checkDish = () => {
@@ -104,11 +104,15 @@ const closeOrder = () => {
 
     finalPrice.innerHTML = (dishActivePrice + drinkActivePrice + dessertActivePrice).toFixed(2);
 
+    document.documentElement.style.overflow = 'hidden';
+    document.body.scroll = "no";
     checkOrder.classList.remove("hidden");
   }
 }
 
 const cancelOrder = () => {
+  document.documentElement.style.overflow = 'auto';
+  document.body.scroll = "yes";
   checkOrder.classList.add("hidden");
 }
 

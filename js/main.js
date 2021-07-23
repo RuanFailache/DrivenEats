@@ -104,15 +104,11 @@ const closeOrder = () => {
 
     finalPrice.innerHTML = (dishActivePrice + drinkActivePrice + dessertActivePrice).toFixed(2);
 
-    document.documentElement.style.overflow = 'hidden';
-    document.body.scroll = "no";
     checkOrder.classList.remove("hidden");
   }
 }
 
 const cancelOrder = () => {
-  document.documentElement.style.overflow = 'auto';
-  document.body.scroll = "yes";
   checkOrder.classList.add("hidden");
 }
 

@@ -1,157 +1,109 @@
-const dishes = document.querySelectorAll(".dish");
-const drinks = document.querySelectorAll(".drink");
-const desserts = document.querySelectorAll(".dessert");
-
 const btn = document.querySelector(".btn");
-const confirm = document.querySelector(".confirm");
-const cancel = document.querySelector(".cancel");
-const checkOrder = document.querySelector(".check-window");
+const checkWindow = document.querySelector(".check-window");
 
-dishes.forEach((dish) => {
-  const checkDish = () => {
-    dishes.forEach((dish) => {
-      if (dish.classList.contains("active")) {
-        dish.classList.toggle("active");
-      }
-    });
-  };
-  const dishSelect = () => {
-    checkDish();
-    dish.classList.toggle("active");
-    btnEnabler();
-  };
-  dish.addEventListener("click", dishSelect);
-});
-
-drinks.forEach((drink) => {
-  const checkDrink = () => {
-    drinks.forEach((drink) => {
-      if (drink.classList.contains("active")) {
-        drink.classList.toggle("active");
-      }
-    });
-  };
-  const drinkSelect = () => {
-    checkDrink();
-    drink.classList.toggle("active");
-    btnEnabler();
-  };
-  drink.addEventListener("click", drinkSelect);
-});
-
-desserts.forEach((dessert) => {
-  const checkDessert = () => {
-    desserts.forEach((dessert) => {
-      if ( dessert.classList.contains("active") ) {
-        dessert.classList.toggle("active");
-      }
-    });
-  };
-  const dessertSelect = () => {
-    checkDessert();
-    dessert.classList.toggle("active");
-    btnEnabler();
-  };
-  dessert.addEventListener("click", dessertSelect);
-});
+let dishName;
+let drinkName;
+let dessertName;
 
 const btnEnabler = () => {
-    const isDishActive = document.querySelectorAll(".dish.active");
-    const isDrinkActive = document.querySelectorAll(".drink.active");
-    const isDessertActive = document.querySelectorAll(".dessert.active");
+  const activeDish = document.querySelector(".dish.active");
+  const activeDrink = document.querySelector(".drink.active");
+  const activeDessert = document.querySelector(".dessert.active");
 
-    let text = document.querySelector(".btn > span");
+  if (activeDish !== null && activeDrink !== null && activeDessert !== null) {
+    btn.classList.add("active");
+  }
+};
 
-    if (isDishActive.length > 0 && isDrinkActive.length > 0 && isDessertActive.length > 0) {
-      btn.classList.add("active");  
-      btn.disabled = false;
-      text.innerHTML = "Fechar pedido"
-    } else {
-        btn.disabled = true;
-    }
-}
+const chooseItem = (elemento, classe) => {
+  const active = document.querySelector(classe + ".active");
+
+  if (active !== null) {
+    active.classList.remove("active");
+  }
+  elemento.classList.add("active");
+  btnEnabler();
+};
+
+const orderItems = () => {
+  const actDishName = document.querySelector(".dish.active .name").innerHTML;
+  const actDishPrice = Number(
+    document.querySelector(".dish.active .price").innerHTML.substr(3)
+  );
+
+  const actDrinkName = document.querySelector(".drink.active .name").innerHTML;
+  const actDrinkPrice = Number(
+    document.querySelector(".drink.active .price").innerHTML.substr(3)
+  );
+
+  const actDessertName = document.querySelector(
+    ".dessert.active .name"
+  ).innerHTML;
+  const actDessertPrice = Number(
+    document.querySelector(".dessert.active .price").innerHTML.substr(3)
+  );
+
+  const checkDishName = document.querySelector(".check-dish .name");
+  const checkDishPrice = document.querySelector(".check-dish .price");
+
+  const checkDrinkName = document.querySelector(".check-drink .name");
+  const checkDrinkPrice = document.querySelector(".check-drink .price");
+
+  const checkDessertName = document.querySelector(".check-dessert .name");
+  const checkDessertPrice = document.querySelector(".check-dessert .price");
+
+  const finalPrice = document.querySelector(".final-price");
+
+  dishName = actDishName;
+  drinkName = actDrinkName;
+  dessertName = actDessertName;
+
+  checkDishName.innerHTML = dishName;
+  checkDishPrice.innerHTML = actDishPrice.toFixed(2);
+  checkDrinkName.innerHTML = drinkName;
+  checkDrinkPrice.innerHTML = actDrinkPrice.toFixed(2);
+  checkDessertName.innerHTML = dessertName;
+  checkDessertPrice.innerHTML = actDessertPrice.toFixed(2);
+
+  finalPrice.innerHTML = Number(
+    actDishPrice + actDrinkPrice + actDessertPrice
+  ).toFixed(2);
+};
 
 const closeOrder = () => {
-  btnEnabler();
-
-  if ( !btn.disabled ) {
-
-    const dishActiveName = document.querySelector(".dish.active > .name").innerHTML;
-    const drinkActiveName = document.querySelector(".drink.active > .name").innerHTML;
-    const dessertActiveName = document.querySelector(".dessert.active > .name").innerHTML;
-
-    const dishActivePrice = Number(document.querySelector(".dish.active > .price").innerHTML.substr(3));
-    const drinkActivePrice = Number(document.querySelector(".drink.active > .price").innerHTML.substr(3));
-    const dessertActivePrice = Number(document.querySelector(".dessert.active > .price").innerHTML.substr(3));
-
-    let dishName = document.querySelector(".check-dish > .name");
-    let drinkName = document.querySelector(".check-drink > .name");
-    let dessertName = document.querySelector(".check-dessert > .name");
-
-    let dishPrice = document.querySelector(".dish-price");
-    let drinkPrice = document.querySelector(".drink-price");
-    let dessertPrice = document.querySelector(".dessert-price");
-
-    let finalPrice = document.querySelector(".final-price");
-
-    dishName.innerHTML = dishActiveName;
-    drinkName.innerHTML = drinkActiveName;
-    dessertName.innerHTML = dessertActiveName;
-
-    dishPrice.innerHTML = dishActivePrice.toFixed(2);
-    drinkPrice.innerHTML = drinkActivePrice.toFixed(2);
-    dessertPrice.innerHTML = dessertActivePrice.toFixed(2);
-
-    finalPrice.innerHTML = (dishActivePrice + drinkActivePrice + dessertActivePrice).toFixed(2);
-
-    checkOrder.classList.remove("hidden");
+  orderItems();
+  if (btn.classList.contains("active")) {
+    checkWindow.classList.remove("hidden");
   }
-}
+};
 
-const cancelOrder = () => {
-  checkOrder.classList.add("hidden");
-}
+const cancel = () => {
+  checkWindow.classList.add("hidden");
+};
 
-btn.addEventListener("click", closeOrder)
-cancel.addEventListener("click", cancelOrder);
+const messageMaker = () => {
+  let name = null;
+  let address = null;
 
-const sendMessageToWhatsapp = () => {
-  
-  btnEnabler();
-
-  const messageMaker = () => {
-
-    const dishActiveName = document.querySelector(".dish.active > .name").innerHTML;
-    const drinkActiveName = document.querySelector(".drink.active > .name").innerHTML;
-    const dessertActiveName = document.querySelector(".dessert.active > .name").innerHTML;
-
-    const dishActivePrice = Number(document.querySelector(".dish.active > .price").innerHTML.substr(3));
-    const drinkActivePrice = Number(document.querySelector(".drink.active > .price").innerHTML.substr(3));
-    const dessertActivePrice = Number(document.querySelector(".dessert.active > .price").innerHTML.substr(3));
-    
-    let totalPrice = dishActivePrice + drinkActivePrice + dessertActivePrice;
-    totalPrice = totalPrice.toFixed(2);
-
-    const name = prompt("Qual o nome da pessoa que receberá o pedido?");
-    const address = prompt("Qual o endereço que será enviado o pedido?");
-
-    const message = `\
-      Olá, gostaria de fazer o pedido:\n\
-      *- Prato:* ${dishActiveName}\n\
-      *- Bebida:* ${drinkActiveName}\n\
-      *- Sobremesa:* ${dessertActiveName}\n\
-      *Total:* R$ ${totalPrice}\n\n\
-      Nome: ${name}\n\
-      Endereço: ${address}`;
-    return encodeURIComponent(message);;
+  while (name === null) {
+    name = prompt("Qual o nome da pessoa que receberá o pedido?");
+  }
+  while (address === null) {
+    address = prompt("Onde deverá ser entregue o pedido?");
   }
 
-  if ( !btn.disabled ) {
-    const message = messageMaker();
-    const phoneNumber = "5591991535878";
-    window.open(`https://wa.me/${phoneNumber}?text=${message}`);
-  }
-}
+  const message = `Olá, gostaria de fazer o pedido\n\
+                   - Prato: ${dishName}\n\
+                   - Bebida: ${drinkName}\n\
+                   - Sobremesa: ${dessertName}\n\
+                   \n\
+                   Nome: ${name}\n\
+                   Endereço: ${address}`;
 
-confirm.addEventListener("click", sendMessageToWhatsapp);
+  return encodeURIComponent(message);
+};
 
+const confirm = () => {
+  const message = messageMaker();
+  window.open("https://wa.me/5591991535878?text=" + message);
+};

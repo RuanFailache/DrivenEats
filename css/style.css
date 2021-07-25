@@ -62,7 +62,7 @@ h3 {
 }
 .dish, .drink, .dessert {
     display: block;
-    width: 180px;
+    min-width: 180px;
     border-radius: 9px;
     background-color: white;
     box-shadow: 0 0 10px 3px rgba(0, 0, 0, .1);
@@ -73,7 +73,7 @@ h3 {
     display: inherit;
     border-top-left-radius: inherit;
     border-top-right-radius: inherit;
-    width: 100%;
+    width: 180px;
     height: 120px;
     object-fit: cover;
 }

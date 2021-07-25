@@ -12,15 +12,14 @@ const btnEnabler = () => {
 
   if (activeDish !== null && activeDrink !== null && activeDessert !== null) {
     btn.classList.add("active");
+    btn.children[0].innerHTML = "Fechar pedido";
   }
 };
 
 const chooseItem = (elemento, classe) => {
   const active = document.querySelector(classe + ".active");
 
-  if (active !== null) {
-    active.classList.remove("active");
-  }
+  if (active !== null) active.classList.remove("active");
   elemento.classList.add("active");
   btnEnabler();
 };
@@ -65,40 +64,26 @@ const orderItems = () => {
   checkDessertName.innerHTML = dessertName;
   checkDessertPrice.innerHTML = actDessertPrice.toFixed(2);
 
-  finalPrice.innerHTML = Number(
+  finalPrice.innerHTML = "R$ " + Number(
     actDishPrice + actDrinkPrice + actDessertPrice
   ).toFixed(2);
 };
 
 const closeOrder = () => {
   orderItems();
-  if (btn.classList.contains("active")) {
-    checkWindow.classList.remove("hidden");
-  }
+  if (btn.classList.contains("active")) checkWindow.classList.remove("hidden");
 };
 
-const cancel = () => {
-  checkWindow.classList.add("hidden");
-};
+const cancel = () => checkWindow.classList.add("hidden");
 
 const messageMaker = () => {
   let name = null;
   let address = null;
 
-  while (name === null) {
-    name = prompt("Qual o nome da pessoa que receberá o pedido?");
-  }
-  while (address === null) {
-    address = prompt("Onde deverá ser entregue o pedido?");
-  }
+  while (name === null) name = prompt("Quem receberá o pedido?");
+  while (address === null) address = prompt("Onde será entregue o pedido?");
 
-  const message = `Olá, gostaria de fazer o pedido\n\
-                   - Prato: ${dishName}\n\
-                   - Bebida: ${drinkName}\n\
-                   - Sobremesa: ${dessertName}\n\
-                   \n\
-                   Nome: ${name}\n\
-                   Endereço: ${address}`;
+  const message = `Olá, gostaria de fazer o pedido\n- Prato: ${dishName}\n- Bebida: ${drinkName}\n- Sobremesa: ${dessertName}\n\nNome: ${name}\nEndereço: ${address}`;
 
   return encodeURIComponent(message);
 };

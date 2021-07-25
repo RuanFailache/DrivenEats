@@ -18,6 +18,7 @@ header {
     width: 100%;
     z-index: 1;
 
+    text-align: center;
     color: white;
     background-color: #CF2B2B;
     box-shadow: 0 4px 10px 0 #3f3f3f;
@@ -61,35 +62,45 @@ h3 {
 }
 .dish, .drink, .dessert {
     display: block;
-    padding: 10px;
+    width: 180px;
     border-radius: 9px;
     background-color: white;
     box-shadow: 0 0 10px 3px rgba(0, 0, 0, .1);
     cursor: pointer;
+    text-align: center;
 }
 .dish img, .drink img, .dessert img {
     display: inherit;
-    border-radius: inherit;
-    width: 180px;
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
 }
 .dish strong, .drink strong, .dessert strong {
     display: block;
     margin-top: 10px;
+    margin-bottom: 5px;
+    padding: 0 5px;
 
     font-size: 16px;
     font-weight: bold;
 }
 .dish p, .drink p, .dessert p {
     max-width: 180px;
-    margin-top: 5px;
     margin-bottom: 10px;
     font-size: 15px;
     font-weight: 300;
     color: #a6a6a6;
+    padding: 0 5px;
 }
 .dish.active, .drink.active, .dessert.active {
     border: 5px solid #32B72F;
     position: relative;
+}
+.dish.active img, .drink.active img, .dessert.active img {
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
 }
 .dish.active::after, .drink.active::after, .dessert.active::after {
     content: "✓";
@@ -124,6 +135,7 @@ footer .btn {
     background-color: #cbcbcb;
     box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, .3);
     cursor: not-allowed;
+    transition: .3s;
 }
 
 .btn.active {
